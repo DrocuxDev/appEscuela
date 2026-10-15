@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
+import Contador from './components/Contador/Contador'
 import AlumnoCard from './components/AlumnoCard/AlumnoCard'
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
         carrera="Administración Industrial"
         estado="Matriculado"
         />
+        </div>
+        <div className="mt-4">
+        <Contador />
         </div>
         </div>
         </>

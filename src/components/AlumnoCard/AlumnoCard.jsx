@@ -1,8 +1,23 @@
 // src/components/AlumnoCard.jsx
-const AlumnoCard = ({ nombre, carrera, estado }) => {
-// Lógica simple para cambiar el color del badge según el estado
+// 1. Importamos useState
+import { useState } from 'react';
+// Observa que ahora 'estadoInicial' entra como Prop
+const AlumnoCard = ({ nombre, carrera, estadoInicial, estado: estadoProp }) => {
+// 2. Creamos el estado tomando el valor que viene de la Prop
+// Se acepta 'estado' como alias por compatibilidad con App.jsx
+const [estado, setEstado] = useState(estadoInicial ?? estadoProp ?? 'Matriculado');
+// 3. Lógica dinámica para el color del badge
 
 const badgeColor = estado === 'Matriculado' ? 'bg-success' : 'bg-secondary';
+
+// 4. Función para alternar el estado
+const cambiarEstado = () => {
+if (estado === 'Matriculado') {
+setEstado('Inactivo');
+} else {
+setEstado('Matriculado');
+}
+};
 
 return (
 <div className="col-md-4 mb-3">
@@ -14,10 +29,19 @@ return (
 
 <div className="d-flex justify-content-between align-items-center">
 
+{/* El badge ahora muestra el 'estado' reactivo */}
 <span className={`badge ${badgeColor}`}>{estado}</span>
 <div>
+{/* Al hacer clic, ejecutamos la función que alterna el
 
-<button className="btn btn-sm btn-outline-warning me-2">Editar</button>
+estado */}
+
+<button
+className="btn btn-sm btn-outline-info me-2"
+onClick={cambiarEstado}
+>
+Cambiar Estado
+</button>
 
 <button className="btn btn-sm btn-outline-danger">Eliminar</button>
 
@@ -28,5 +52,4 @@ return (
 </div>
 );
 };
-
 export default AlumnoCard;
